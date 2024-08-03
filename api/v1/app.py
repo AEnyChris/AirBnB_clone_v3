@@ -20,7 +20,10 @@ def tear_down(exception):
 
 if __name__ == "__main__":
 
-    def run_app(host='0.0.0.0', port=5000):
-        app.run(host=host, port=port, debug=True)
+    host = getenv('HBNB_API_HOST')
+    port = getenv('HBNB_API_PORT')
 
-    run_app(getenv('HBNB_API_HOST'), int(getenv('HBNB_API_PORT')))
+    if host and port:
+        app.run(host=host, port=int(port), debug=True)
+    else:
+        app.run(host='0.0.0.0', port=5000, debug=True)
