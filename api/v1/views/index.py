@@ -8,11 +8,13 @@ from api.v1.views import app_views
 
 @app_views.route("/status", strict_slashes=False)
 def status():
+    """return the status of app"""
     return jsonify(status="OK")
 
 
 @app_views.route("/stats", strict_slashes=False)
 def stats():
+    """return the count of objects by type"""
     return jsonify(
             amenity=storage.count("Amenity"),
             cities=storage.count("City"),
