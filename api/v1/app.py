@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
+
 @app.teardown_appcontext
 def teardown(exceptions):
     """Tear down and close current sesion"""
