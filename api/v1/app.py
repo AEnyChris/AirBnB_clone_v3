@@ -5,11 +5,18 @@ from flask import Flask
 from models import storage
 from api.v1.views import app_views
 from os import getenv
+from flask import jsonify
 
 app = Flask(__name__)
 
 app.register_blueprint(app_views)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """error message"""
+    return jsonify(error="Not found")
 
 
 @app.teardown_appcontext
