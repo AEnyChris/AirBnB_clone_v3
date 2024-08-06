@@ -20,7 +20,7 @@ def status():
 def stats():
     """return the count of objects by type"""
     return jsonify(
-            amenity=storage.count("Amenity"),
+            amenities=storage.count("Amenity"),
             cities=storage.count("City"),
             places=storage.count("Place"),
             reviews=storage.count("Review"),
