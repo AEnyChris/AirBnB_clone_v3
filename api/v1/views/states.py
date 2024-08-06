@@ -4,6 +4,7 @@
 from flask import abort, jsonify, request, make_response
 from models import storage
 from api.v1.views import app_views
+from models.state import State
 
 
 @app_views.route("/states",
@@ -50,5 +51,6 @@ def state(state_id):
                 if key not in ['id', 'created_at', 'updated_at']:
                     setattr(state, key, value)
             state.save()
-            return make_response(jsonify(state.to_dict), 200)
+            storage.save()
+            return make_response(jsonify(state.to_dict()), 200)
     abort(404)
