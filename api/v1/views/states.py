@@ -20,9 +20,6 @@ def states_list():
         req = request.get_json(silent=True)
         if req is None:
             abort(400, description="Not a JSON")
-        print(type(req))
-        for i in req:
-            print(f"i from req: {i}")
         if 'name' not in req:
             abort(400, description="Missing name")
         new_state = State(**req)
@@ -49,8 +46,6 @@ def state(state_id):
             req = request.get_json(silent=True)
             if req is None:
                 abort(400, "Not a JSON")
-            print(f"req: {req}")
-            print(type(req))
             for key, value in req.items():
                 if key not in ['id', 'created_at', 'updated_at']:
                     setattr(state, key, value)
