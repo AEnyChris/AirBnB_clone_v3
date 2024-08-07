@@ -53,7 +53,8 @@ def cities_by_state(state_id):
                 abort(400, description="Not a JSON")
             if 'name' not in req:
                 abort(400, description="Missing name")
-            new_city = City(**req)
+            new_city = City(state_id=state_id, **req)
             new_city.save()
+            storage.save()
             return make_response(jsonify(new_city.to_dict()), 201)
     abort(404)
